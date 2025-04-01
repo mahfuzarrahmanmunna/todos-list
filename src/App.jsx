@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import './App.css'
 import Footer from './MyComponents/Footer'
 import Header from './MyComponents/header'
@@ -6,12 +7,17 @@ import Todos from './MyComponents/Todos'
 
 function App() {
   const onDelete = (todo) => {
-    console.log('on Delete', todo);
-    let index = todos.indexOf(todo);
-    todos.splice(index, 1)
+    // let index = todos.indexOf(todo);
+    // todos.splice(index, 1)
+    // console.log(todos)
+    setTodos(todos.filter(e => {
+      console.log(e)
+      return e !== todo;
+    }))
   }
 
-  let todos = [
+
+  const [todos, setTodos] = useState([
     {
       sno: 1,
       title: 'Go to the market.',
@@ -27,7 +33,7 @@ function App() {
       title: 'Go to the ghat.',
       desc: 'You need to go to the ghat to get this job done.'
     },
-  ]
+  ])
   return (
     <>
       <Header title="My Todos List" searchBar={true} />
